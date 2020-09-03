@@ -24,7 +24,7 @@ fn main() {
             }
         }
 
-        println!("{}", randomize_case(buf, &mut rng))
+        print!("{}", randomize_case(buf, &mut rng))
     } else {
         loop {
             let mut buf = String::new();
