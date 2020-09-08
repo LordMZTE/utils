@@ -28,7 +28,7 @@ fn main() {
     } else {
         loop {
             let mut buf = String::new();
-            if let Err(_) = io::stdin().read_line(&mut buf) {
+            if io::stdin().read_line(&mut buf).is_err() {
                 continue;
             }
 
