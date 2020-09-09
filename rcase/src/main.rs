@@ -1,6 +1,6 @@
 use rcase::randomize_case;
-use std::io;
 use std::env::args;
+use std::io;
 
 fn main() {
     let mut rng = rand::thread_rng();
@@ -16,11 +16,11 @@ fn main() {
                 Some(w) => {
                     buf.push_str(w.as_str());
                     buf.push(' ');
-                },
+                }
                 None => {
                     buf.pop();
                     break;
-                },
+                }
             }
         }
 
