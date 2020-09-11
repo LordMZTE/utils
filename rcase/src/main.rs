@@ -1,9 +1,10 @@
-use rcase::randomize_case;
 use std::env::args;
 use std::io;
 
+use rcase::BufRandomizer;
+
 fn main() {
-    let mut rng = rand::thread_rng();
+    let mut rng = BufRandomizer::new(Box::new(rand::thread_rng()));
     let mut input = args();
 
     if input.len() > 1 {
@@ -24,7 +25,7 @@ fn main() {
             }
         }
 
-        print!("{}", randomize_case(buf, &mut rng))
+        print!("{}", rng.rand_string_case(&buf))
     } else {
         loop {
             let mut buf = String::new();
@@ -35,7 +36,7 @@ fn main() {
             if buf.is_empty() {
                 break;
             }
-            print!("{}", randomize_case(buf, &mut rng));
+            print!("{}", rng.rand_string_case(&buf));
         }
     }
 }
