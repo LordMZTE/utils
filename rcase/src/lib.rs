@@ -1,3 +1,5 @@
+use delegate::delegate;
+
 use rand::RngCore;
 
 pub struct BufRandomizer {
@@ -6,20 +8,13 @@ pub struct BufRandomizer {
 }
 
 impl RngCore for BufRandomizer {
-    fn next_u32(&mut self) -> u32 {
-        self.rand.next_u32()
-    }
-
-    fn next_u64(&mut self) -> u64 {
-        self.rand.next_u64()
-    }
-
-    fn fill_bytes(&mut self, dest: &mut [u8]) {
-        self.rand.fill_bytes(dest)
-    }
-
-    fn try_fill_bytes(&mut self, dest: &mut [u8]) -> Result<(), rand::Error> {
-        self.rand.try_fill_bytes(dest)
+    delegate! {
+        to self.rand {
+            fn next_u32(&mut self) -> u32;
+            fn next_u64(&mut self) -> u64;
+            fn fill_bytes(&mut self, dest: &mut [u8]);
+            fn try_fill_bytes(&mut self, dest: &mut [u8]) -> Result<(), rand::Error>;
+        }
     }
 }
 
