@@ -20,10 +20,7 @@ impl RngCore for BufRandomizer {
 
 impl BufRandomizer {
     pub fn new(rand: Box<dyn RngCore>) -> Box<Self> {
-        Box::new(BufRandomizer {
-            bit_buf: 0,
-            rand,
-        })
+        Box::new(BufRandomizer { bit_buf: 0, rand })
     }
 
     pub fn next_bool(&mut self) -> bool {
@@ -40,10 +37,15 @@ impl BufRandomizer {
             c.to_uppercase().to_string()
         } else {
             c.to_lowercase().to_string()
-        }.chars().next()
+        }
+        .chars()
+        .next()
     }
 
     pub fn rand_string_case(&mut self, s: &str) -> String {
-        s.chars().into_iter().map(|c| self.rand_char_case(&c).unwrap()).collect()
+        s.chars()
+            .into_iter()
+            .map(|c| self.rand_char_case(&c).unwrap())
+            .collect()
     }
 }
