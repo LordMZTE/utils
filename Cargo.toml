@@ -1,5 +1,5 @@
 [workspace]
 members = [
-    "rcase",
+    "tmod",
     "mcstat",
 ]

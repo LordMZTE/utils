@@ -1,0 +1,19 @@
+name: tmod
+about: modifies text
+args:
+  - text:
+      required: false
+      index: 1
+      multiple: true
+      help: "the text to process. leave empty to read from stdin"
+
+  - randomize:
+      help: "randomizes the capitalization"
+      short: r
+
+groups:
+    - processors:
+        required: true
+        multiple: true
+        args:
+            - randomize

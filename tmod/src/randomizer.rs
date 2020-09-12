@@ -19,8 +19,8 @@ impl RngCore for BufRandomizer {
 }
 
 impl BufRandomizer {
-    pub fn new(rand: Box<dyn RngCore>) -> Box<Self> {
-        Box::new(BufRandomizer { bit_buf: 0, rand })
+    pub fn new(rand: Box<dyn RngCore>) -> Self {
+        BufRandomizer { bit_buf: 0, rand }
     }
 
     pub fn next_bool(&mut self) -> bool {
