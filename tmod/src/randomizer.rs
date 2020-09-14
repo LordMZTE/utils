@@ -1,4 +1,5 @@
-use delegate::delegate;
+use core::ops::DerefMut;
+use std::ops::Deref;
 
 use rand::RngCore;
 
@@ -11,14 +12,16 @@ pub struct BufRandomizer {
     rand: Box<dyn RngCore>,
 }
 
-impl RngCore for BufRandomizer {
-    delegate! {
-        to self.rand {
-            fn next_u32(&mut self) -> u32;
-            fn next_u64(&mut self) -> u64;
-            fn fill_bytes(&mut self, dest: &mut [u8]);
-            fn try_fill_bytes(&mut self, dest: &mut [u8]) -> Result<(), rand::Error>;
-        }
+impl DerefMut for BufRandomizer {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.rand
+    }
+}
+
+impl Deref for BufRandomizer {
+    type Target = Box<dyn RngCore>;
+    fn deref(&self) -> &Self::Target {
+        &self.rand
     }
 }
 
