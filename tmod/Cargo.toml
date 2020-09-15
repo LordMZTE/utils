@@ -10,4 +10,4 @@ edition = "2018"
 rand = "0.7.3"
 clap = { version = "^2.33", features = ["yaml"] }
 itertools = "0.9.0"
-buf-rand = "0.1.0"
+buf-rand = "0.1.1"
