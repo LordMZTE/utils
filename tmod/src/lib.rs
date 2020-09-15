@@ -1,5 +1,4 @@
 pub mod processors;
-pub mod randomizer;
 
 pub trait TextProcessor {
     fn process(&self, txt: &str) -> String;

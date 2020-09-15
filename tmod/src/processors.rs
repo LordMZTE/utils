@@ -1,10 +1,11 @@
 use std::{cell::RefCell, string::String};
 
-use crate::randomizer::BufRandomizer;
+use buf_rand::BufRand;
+
 use crate::TextProcessor;
 
 pub struct CaseRandomizer {
-    randomizer: RefCell<BufRandomizer>,
+    randomizer: RefCell<BufRand>,
 }
 
 impl TextProcessor for CaseRandomizer {
@@ -16,7 +17,7 @@ impl TextProcessor for CaseRandomizer {
 impl CaseRandomizer {
     pub fn new() -> Self {
         CaseRandomizer {
-            randomizer: RefCell::new(BufRandomizer::new(Box::new(rand::thread_rng()))),
+            randomizer: RefCell::new(BufRand::new(Box::new(rand::thread_rng()))),
         }
     }
 }
