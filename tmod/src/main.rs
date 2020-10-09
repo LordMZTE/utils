@@ -3,7 +3,7 @@ use itertools::Itertools;
 use tmod::{apply_processors, processors::CaseRandomizer, TextProcessor};
 
 fn main() {
-    //TODO add some more processors
+    // TODO add some more processors
     let processors: &[(&str, Box<dyn TextProcessor>)] =
         &[("randomize", Box::new(CaseRandomizer::new()))];
 
