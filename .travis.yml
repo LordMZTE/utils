@@ -1,6 +1,7 @@
 language: rust
 rust:
   - nightly
+  - release
 cache: cargo
 os:
   - linux
