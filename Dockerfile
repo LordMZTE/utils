@@ -10,3 +10,6 @@ COPY tmod/ tmod/
 
 RUN cargo install --path mcstat
 RUN cargo install --path tmod
+
+FROM alpine
+COPY --from=builder /usr/local/cargo/bin/ /usr/bin
