@@ -4,7 +4,7 @@ use std::{
 };
 
 use anyhow::{anyhow, Context, Result};
-use chrono::Utc;
+use chrono::{Local, Utc};
 use config::get_config;
 use crossterm::{
     cursor::MoveTo,
@@ -34,7 +34,7 @@ async fn main() -> Result<()> {
 
 fn tick(font: &FIGfont) -> Result<()> {
     let fig = font
-        .convert(&Utc::now().format(&get_config()?.format).to_string())
+        .convert(&Local::now().format(&get_config()?.format).to_string())
         .context("error formatting fig")?
         .to_string();
 
