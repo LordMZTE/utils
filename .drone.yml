@@ -1,0 +1,41 @@
+kind: pipeline
+name: tests
+steps:
+    - name: test-linux
+      image: rust
+      commands:
+          - cargo test -v
+---
+kind: pipeline
+name: release
+steps:
+    - name: release-linux
+      image: rust
+      commands:
+          - cargo build --release -v
+
+    - name: release-win
+      image: lordmzte/rust-win
+      commands:
+          - cargo build --release --target x86_64-pc-windows-gnu -v
+
+    - name: publish
+      image: plugins/github-release
+      settings:
+          api_key:
+              from_secret: github_token
+          note: CHANGELOG.md
+          title: tag-${DRONE_TAG}
+          files:
+              - target/release/mcstat
+              - target/release/figclock
+              - target/release/tmod
+              - target/x86_64-pc-windows-gnu/release/mcstat.exe
+              - target/x86_64-pc-windows-gnu/release/figclock.exe
+              - target/x86_64-pc-windows-gnu/release/tmod.exe
+      when:
+          event: tag
+      depends_on:
+          - release-linux
+          - release-win
+
