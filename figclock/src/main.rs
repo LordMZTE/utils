@@ -4,7 +4,7 @@ use std::{
 };
 
 use anyhow::{anyhow, Context, Result};
-use chrono::{Local, Utc};
+use chrono::Local;
 use config::get_config;
 use crossterm::{
     cursor::MoveTo,
