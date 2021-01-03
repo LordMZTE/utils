@@ -5,6 +5,14 @@ steps:
       image: rust
       commands:
           - cargo test -v
+
+    # Try to build docker image
+    - name: test-docker-build
+      image: plugins/docker
+      settings:
+          repo: lordmzte/utils
+          # Don't push
+          dry_run: true
 ---
 kind: pipeline
 name: release
@@ -14,6 +22,7 @@ steps:
       commands:
           - cargo build --release -v
 
+    # Cross-Compile to windows
     - name: release-win
       image: lordmzte/rust-win
       commands:
