@@ -1,4 +1,4 @@
-# v0.0.2
+# v0.0.3
 ## mcstat
-- increase timeout to 5000ms
+- add ping display
 
